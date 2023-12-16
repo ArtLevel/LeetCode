@@ -47,7 +47,7 @@ counter()
  * @return { increment: Function, decrement: Function, reset: Function }
  */
 
-const createCounter = function(init) {
+const createCounter2 = function(init) {
     let count = init
 
     return {
@@ -61,8 +61,6 @@ const createCounter = function(init) {
 }
 
 class Counter {
-
-
     constructor(init) {
         this.init = init
         this.count = init
@@ -88,4 +86,33 @@ class Counter {
  * counter.increment(); // 6
  * counter.reset(); // 5
  * counter.decrement(); // 4
+ */
+
+// 2704. To Be Or Not To Be
+
+/**
+ * @param {string} val
+ * @return {Object}
+ */
+const expect = (initValue) => {
+    return {
+        toBe: (val) => {
+            if(val === initValue) {
+                return val === initValue
+            } else {
+                throw new Error('Not Equal')
+            }
+        },
+        notToBe: (val) => {
+            if(val !== initValue) {
+                return val !== initValue
+            }
+        }
+    }
+}
+
+console.log(expect(5).notToBe(null))
+/**
+ * expect(5).toBe(5); // true
+ * expect(5).notToBe(5); // throws "Equal"
  */
