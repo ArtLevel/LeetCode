@@ -116,9 +116,17 @@ console.log(expect(5).notToBe(null))
  * @return {number[]}
  */
 
-const map = (arr, fn) => arr.map(fn)
+const map = (arr, fn) => {
+    const newArray = []
 
-const newArray = map([1, 2, 3], function (n) {return n + 1})
+    for (let i = 0; arr.length > i; i++) {
+        newArray[i] = fn(arr[i], i)
+    }
+
+    return newArray
+}
+
+const newArray = map([1, 2, 3], function plusI(n, i) { return n + i; })
 
 console.log(newArray)
 
@@ -129,7 +137,17 @@ console.log(newArray)
  * @param {number} init
  * @return {number}
  */
-const reduce = (nums, fn, init) => nums.reduce(fn, init)
+const reduce = (nums, fn, init) => {
+    let accum = init
+
+    for (let i = 0; nums.length > i; i++) {
+        accum = fn(accum, nums[i])
+    }
+
+    return accum
+}
+
+console.log(reduce([1,2,3,4], function sum(accum, curr) { return accum + curr; }, 0))
 
 // 2634. Filter Elements from Array
 
@@ -138,4 +156,17 @@ const reduce = (nums, fn, init) => nums.reduce(fn, init)
  * @param {Function} fn
  * @return {number[]}
  */
-const filter = (arr, fn) => arr.filter(fn)
+const filter = (arr, fn) => {
+    const newArray = []
+
+    for (let i = 0; arr.length > i; i++) {
+        const item = arr[i]
+        if(fn(item, i)) {
+            newArray.push(item)
+        }
+    }
+
+    return newArray
+}
+
+console.log(filter([1,2,3], function firstIndex(n, i) { return i === 0; }))
