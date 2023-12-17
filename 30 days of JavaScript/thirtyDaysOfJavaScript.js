@@ -94,20 +94,11 @@ class Counter {
  * @param {string} val
  * @return {Object}
  */
+
 const expect = (initValue) => {
     return {
-        toBe: (val) => {
-            if(val === initValue) {
-                return val === initValue
-            } else {
-                throw new Error('Not Equal')
-            }
-        },
-        notToBe: (val) => {
-            if(val !== initValue) {
-                return val !== initValue
-            }
-        }
+        toBe: (val) => val === initValue || (() => {throw new Error('Not Equal')})(),
+        notToBe: (val) => val !== initValue || (() => {throw new Error('Equal')})()
     }
 }
 
@@ -116,3 +107,17 @@ console.log(expect(5).notToBe(null))
  * expect(5).toBe(5); // true
  * expect(5).notToBe(5); // throws "Equal"
  */
+
+// 2635. Apply Transform Over Each Element in Array
+
+/**
+ * @param {number[]} arr
+ * @param {Function} fn
+ * @return {number[]}
+ */
+
+const map = (arr, fn) => arr.map(fn)
+
+const newArray = map([1, 2, 3], function (n) {return n + 1})
+
+console.log(newArray)
