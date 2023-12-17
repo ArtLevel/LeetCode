@@ -170,3 +170,25 @@ const filter = (arr, fn) => {
 }
 
 console.log(filter([1,2,3], function firstIndex(n, i) { return i === 0; }))
+
+// 2629. Function Composition
+
+const compose = (functions) => {
+
+    return function(x) {
+        let accum = x
+
+        for (let i = functions.length - 1; i >= 0; i--) {
+            accum = functions[i](accum)
+        }
+
+        return accum
+    }
+}
+
+console.log(compose([x => x + 1, x => x * x, x => 2 * x])(4))
+
+/**
+ * const fn = compose([x => x + 1, x => 2 * x])
+ * fn(4) // 9
+ */
