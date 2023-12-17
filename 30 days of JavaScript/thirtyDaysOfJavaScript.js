@@ -130,3 +130,12 @@ console.log(newArray)
  * @return {number}
  */
 const reduce = (nums, fn, init) => nums.reduce(fn, init)
+
+// 2634. Filter Elements from Array
+
+/**
+ * @param {number[]} arr
+ * @param {Function} fn
+ * @return {number[]}
+ */
+const filter = (arr, fn) => arr.filter(fn)
