@@ -204,3 +204,30 @@ const argumentsLength = (...args) => {
 
     return count
 }
+
+// 2666. Allow One Function Call
+
+/**
+ * @param {Function} fn
+ * @return {Function}
+ */
+const once = function(fn) {
+    let isCalled = false
+
+    return function(...args){
+        const result = isCalled ? undefined : fn(...args)
+
+        isCalled = true
+
+        return result
+    }
+}
+
+
+let fn = (a,b,c) => (a + b + c)
+let onceFn = once(fn)
+
+console.log(onceFn(1,2,3)) // 6
+console.log(onceFn(2,3,6)) // returns undefined without calling fn
+
+
