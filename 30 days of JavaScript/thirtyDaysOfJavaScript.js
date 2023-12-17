@@ -192,3 +192,15 @@ console.log(compose([x => x + 1, x => x * x, x => 2 * x])(4))
  * const fn = compose([x => x + 1, x => 2 * x])
  * fn(4) // 9
  */
+
+// 2703. Return Length of Arguments Passed
+
+const argumentsLength = (...args) => {
+    let count = 0
+
+    for (let i = 0; args.length > i; i++) {
+        count += 1
+    }
+
+    return count
+}
