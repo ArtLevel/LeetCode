@@ -121,3 +121,12 @@ const map = (arr, fn) => arr.map(fn)
 const newArray = map([1, 2, 3], function (n) {return n + 1})
 
 console.log(newArray)
+
+// 2626. Array Reduce Transformation
+/**
+ * @param {number[]} nums
+ * @param {Function} fn
+ * @param {number} init
+ * @return {number}
+ */
+const reduce = (nums, fn, init) => nums.reduce(fn, init)
