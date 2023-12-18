@@ -4,7 +4,7 @@
  * @return {Function}
  */
 
-const createHelloWorld = () =>  (...args) => 'Hello World'
+const createHelloWorld = () => (...args) => 'Hello World'
 
 createHelloWorld()()
 
@@ -21,11 +21,11 @@ createHelloWorld()()
  */
 
 const createCounter = (n) => {
-    let counter = n
+	let counter = n
 
-    return () => {
-        return counter++
-    }
+	return () => {
+		return counter++
+	}
 }
 
 const counter = createCounter(10)
@@ -48,36 +48,36 @@ counter()
  */
 
 const createCounter2 = function(init) {
-    let count = init
+	let count = init
 
-    return {
-        increment: () => ++count,
-        decrement: () => --count,
-        reset: () => {
-            count = init
-            return init
-        },
-    }
+	return {
+		increment: () => ++count,
+		decrement: () => --count,
+		reset: () => {
+			count = init
+			return init
+		}
+	}
 }
 
 class Counter {
-    constructor(init) {
-        this.init = init
-        this.count = init
-    }
+	constructor(init) {
+		this.init = init
+		this.count = init
+	}
 
-    increment() {
-        return ++this.count
-    }
+	increment() {
+		return ++this.count
+	}
 
-    decrement() {
-        return --this.count
-    }
+	decrement() {
+		return --this.count
+	}
 
-    reset() {
-        this.count = this.init
-        return this.count
-    }
+	reset() {
+		this.count = this.init
+		return this.count
+	}
 }
 
 
@@ -96,10 +96,14 @@ class Counter {
  */
 
 const expect = (initValue) => {
-    return {
-        toBe: (val) => val === initValue || (() => {throw new Error('Not Equal')})(),
-        notToBe: (val) => val !== initValue || (() => {throw new Error('Equal')})()
-    }
+	return {
+		toBe: (val) => val === initValue || (() => {
+			throw new Error('Not Equal')
+		})(),
+		notToBe: (val) => val !== initValue || (() => {
+			throw new Error('Equal')
+		})()
+	}
 }
 
 console.log(expect(5).notToBe(null))
@@ -117,16 +121,18 @@ console.log(expect(5).notToBe(null))
  */
 
 const map = (arr, fn) => {
-    const newArray = []
+	const newArray = []
 
-    for (let i = 0; arr.length > i; i++) {
-        newArray[i] = fn(arr[i], i)
-    }
+	for (let i = 0; arr.length > i; i++) {
+		newArray[i] = fn(arr[i], i)
+	}
 
-    return newArray
+	return newArray
 }
 
-const newArray = map([1, 2, 3], function plusI(n, i) { return n + i; })
+const newArray = map([1, 2, 3], function plusI(n, i) {
+	return n + i
+})
 
 console.log(newArray)
 
@@ -138,16 +144,18 @@ console.log(newArray)
  * @return {number}
  */
 const reduce = (nums, fn, init) => {
-    let accum = init
+	let accum = init
 
-    for (let i = 0; nums.length > i; i++) {
-        accum = fn(accum, nums[i])
-    }
+	for (let i = 0; nums.length > i; i++) {
+		accum = fn(accum, nums[i])
+	}
 
-    return accum
+	return accum
 }
 
-console.log(reduce([1,2,3,4], function sum(accum, curr) { return accum + curr; }, 0))
+console.log(reduce([1, 2, 3, 4], function sum(accum, curr) {
+	return accum + curr
+}, 0))
 
 // 2634. Filter Elements from Array
 
@@ -157,33 +165,35 @@ console.log(reduce([1,2,3,4], function sum(accum, curr) { return accum + curr; }
  * @return {number[]}
  */
 const filter = (arr, fn) => {
-    const newArray = []
+	const newArray = []
 
-    for (let i = 0; arr.length > i; i++) {
-        const item = arr[i]
-        if(fn(item, i)) {
-            newArray.push(item)
-        }
-    }
+	for (let i = 0; arr.length > i; i++) {
+		const item = arr[i]
+		if (fn(item, i)) {
+			newArray.push(item)
+		}
+	}
 
-    return newArray
+	return newArray
 }
 
-console.log(filter([1,2,3], function firstIndex(n, i) { return i === 0; }))
+console.log(filter([1, 2, 3], function firstIndex(n, i) {
+	return i === 0
+}))
 
 // 2629. Function Composition
 
 const compose = (functions) => {
 
-    return function(x) {
-        let accum = x
+	return function(x) {
+		let accum = x
 
-        for (let i = functions.length - 1; i >= 0; i--) {
-            accum = functions[i](accum)
-        }
+		for (let i = functions.length - 1; i >= 0; i--) {
+			accum = functions[i](accum)
+		}
 
-        return accum
-    }
+		return accum
+	}
 }
 
 console.log(compose([x => x + 1, x => x * x, x => 2 * x])(4))
@@ -196,13 +206,13 @@ console.log(compose([x => x + 1, x => x * x, x => 2 * x])(4))
 // 2703. Return Length of Arguments Passed
 
 const argumentsLength = (...args) => {
-    let count = 0
+	let count = 0
 
-    for (let i = 0; args.length > i; i++) {
-        count += 1
-    }
+	for (let i = 0; args.length > i; i++) {
+		count += 1
+	}
 
-    return count
+	return count
 }
 
 // 2666. Allow One Function Call
@@ -212,22 +222,36 @@ const argumentsLength = (...args) => {
  * @return {Function}
  */
 const once = function(fn) {
-    let isCalled = false
+	let isCalled = false
 
-    return function(...args){
-        const result = isCalled ? undefined : fn(...args)
+	return function(...args) {
+		const result = isCalled ? undefined : fn(...args)
 
-        isCalled = true
+		isCalled = true
 
-        return result
-    }
+		return result
+	}
 }
 
-
-let fn = (a,b,c) => (a + b + c)
+let fn = (a, b, c) => (a + b + c)
 let onceFn = once(fn)
 
-console.log(onceFn(1,2,3)) // 6
-console.log(onceFn(2,3,6)) // returns undefined without calling fn
+console.log(onceFn(1, 2, 3)) // 6
+console.log(onceFn(2, 3, 6)) // returns undefined without calling fn
 
+// 2723. Add Two Promises
+
+/**
+ * @param {Promise} promise1
+ * @param {Promise} promise2
+ * @return {Promise}
+ */
+const addTwoPromises = async (promise1, promise2) => {
+	const res = await Promise.all([promise1, promise2])
+
+	return res.reduce((acc, num) => acc + num, 0)
+}
+
+addTwoPromises(Promise.resolve(2), Promise.resolve(2))
+	.then(console.log) // 4
 
