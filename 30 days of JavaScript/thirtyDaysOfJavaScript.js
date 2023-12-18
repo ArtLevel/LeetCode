@@ -255,3 +255,14 @@ const addTwoPromises = async (promise1, promise2) => {
 addTwoPromises(Promise.resolve(2), Promise.resolve(2))
 	.then(console.log) // 4
 
+// 2621. Sleep
+
+/**
+ * @param {number} millis
+ * @return {Promise}
+ */
+const sleep = (millis) => new Promise((res) => setTimeout(() => res(), millis))
+
+
+let t = Date.now()
+sleep(100).then(() => console.log(Date.now() - t)) // 100
