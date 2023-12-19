@@ -346,6 +346,20 @@
 
 // 2727. Is Object Empty
 
-const isEmpty = (obj) => typeof obj === 'object' && Object.keys(obj).length === 0
+// const isEmpty = (obj) => typeof obj === 'object' && Object.keys(obj).length === 0
+//
+// console.log(isEmpty({ 'x': 5, 'y': 42 }))
 
-console.log(isEmpty({ 'x': 5, 'y': 42 }))
+// 2619. Array Prototype Last
+
+/**
+ * @return {null|boolean|number|string|Array|Object}
+ */
+
+Array.prototype.last = () => {
+	if (this.length === 0) return -1
+	return this[this.length - 1]
+}
+
+const arr = [1, 2, 3]
+arr.last() // 3
