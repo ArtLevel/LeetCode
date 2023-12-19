@@ -269,39 +269,39 @@
 //
 // 2715. Timeout Cancellation
 
-/**
- * @param {Function} fn
- * @param {Array} args
- * @param {number} t
- * @return {Function}
- */
-const cancellable = (fn, args, t) => {
-	const timerId = setTimeout(() => fn(...args), t)
-
-	return () => clearTimeout(timerId)
-}
-
-
-const result = []
-
-const fn = (x) => x * 5
-const args = [2], t = 20, cancelTimeMs = 50
-
-const start = performance.now()
-
-const log = (...argsArr) => {
-	const diff = Math.floor(performance.now() - start)
-	result.push({ 'time': diff, 'returned': fn(...argsArr) })
-}
-
-const cancel = cancellable(log, args, t)
-
-const maxT = Math.max(t, cancelTimeMs)
-
-setTimeout(cancel, cancelTimeMs)
-setTimeout(() => {
-	console.log(result) // [{"time":20,"returned":10}]
-}, maxT + 15)
+// /**
+//  * @param {Function} fn
+//  * @param {Array} args
+//  * @param {number} t
+//  * @return {Function}
+//  */
+// const cancellable = (fn, args, t) => {
+// 	const timerId = setTimeout(() => fn(...args), t)
+//
+// 	return () => clearTimeout(timerId)
+// }
+//
+//
+// const result = []
+//
+// const fn = (x) => x * 5
+// const args = [2], t = 20, cancelTimeMs = 50
+//
+// const start = performance.now()
+//
+// const log = (...argsArr) => {
+// 	const diff = Math.floor(performance.now() - start)
+// 	result.push({ 'time': diff, 'returned': fn(...argsArr) })
+// }
+//
+// const cancel = cancellable(log, args, t)
+//
+// const maxT = Math.max(t, cancelTimeMs)
+//
+// setTimeout(cancel, cancelTimeMs)
+// setTimeout(() => {
+// 	console.log(result) // [{"time":20,"returned":10}]
+// }, maxT + 15)
 
 // 2725. Interval Cancellation
 //
@@ -343,3 +343,9 @@ setTimeout(() => {
 // 	//     {"time":175,"returned":8}
 // 	// ]
 // }, cancelTimeMs + t + 15)
+
+// 2727. Is Object Empty
+
+const isEmpty = (obj) => typeof obj === 'object' && Object.keys(obj).length === 0
+
+console.log(isEmpty({ 'x': 5, 'y': 42 }))
