@@ -366,71 +366,103 @@
 
 // 2726. Calculator with Method Chaining
 
-class Calculator {
-	/**
-	 * @param {number} value
-	 */
-	constructor(value) {
-		this.value = value
-	}
+// class Calculator {
+// 	/**
+// 	 * @param {number} value
+// 	 */
+// 	constructor(value) {
+// 		this.value = value
+// 	}
+//
+// 	/**
+// 	 * @param {number} value
+// 	 * @return {Calculator}
+// 	 */
+// 	add(value) {
+// 		this.value += value
+// 		return this
+// 	}
+//
+// 	/**
+// 	 * @param {number} value
+// 	 * @return {Calculator}
+// 	 */
+// 	subtract(value) {
+// 		this.value -= value
+// 		return this
+// 	}
+//
+// 	/**
+// 	 * @param {number} value
+// 	 * @return {Calculator}
+// 	 */
+// 	multiply(value) {
+// 		this.value *= value
+// 		return this
+// 	}
+//
+// 	/**
+// 	 * @param {number} value
+// 	 * @return {Calculator}
+// 	 */
+// 	divide(value) {
+// 		this.value /= value
+// 		return this
+// 	}
+//
+// 	/**
+// 	 * @param {number} value
+// 	 * @return {Calculator}
+// 	 */
+// 	power(value) {
+// 		this.value = Math.pow(this.value, value)
+// 		return this
+// 	}
+//
+// 	/**
+// 	 * @return {number}
+// 	 */
+// 	getResult() {
+// 		if (this.value !== Infinity) {
+// 			return this.value
+// 		} else {
+// 			return 'Division by zero is not allowed'
+// 		}
+// 	}
+// }
+//
+// const calculator = new Calculator(20).divide(0).getResult()
+//
+// console.log(calculator)
 
-	/**
-	 * @param {number} value
-	 * @return {Calculator}
-	 */
-	add(value) {
-		this.value += value
-		return this
-	}
+// 2695. Array Wrapper
 
-	/**
-	 * @param {number} value
-	 * @return {Calculator}
-	 */
-	subtract(value) {
-		this.value -= value
-		return this
-	}
-
-	/**
-	 * @param {number} value
-	 * @return {Calculator}
-	 */
-	multiply(value) {
-		this.value *= value
-		return this
-	}
-
-	/**
-	 * @param {number} value
-	 * @return {Calculator}
-	 */
-	divide(value) {
-		this.value /= value
-		return this
-	}
-
-	/**
-	 * @param {number} value
-	 * @return {Calculator}
-	 */
-	power(value) {
-		this.value = Math.pow(this.value, value)
-		return this
-	}
-
-	/**
-	 * @return {number}
-	 */
-	getResult() {
-		if (this.value !== Infinity) {
-			return this.value
-		} else {
-			return 'Division by zero is not allowed'
-		}
-	}
+/**
+ * @param {number[]} nums
+ * @return {void}
+ */
+var ArrayWrapper = function(nums) {
+	this.nums = nums
 }
 
-const calculator = new Calculator(20).divide(0).getResult()
+/**
+ * @return {number}
+ */
+ArrayWrapper.prototype.valueOf = function() {
+	return this.nums
+		.reduce((accum, num) => accum + num, 0)
+}
 
-console.log(calculator)
+/**
+ * @return {string}
+ */
+ArrayWrapper.prototype.toString = function() {
+	return `[${String(this.nums)}]`
+}
+
+
+const obj1 = new ArrayWrapper([1, 2])
+const obj2 = new ArrayWrapper([3, 4])
+console.log(obj1 + obj2) // 10
+console.log(String(obj1)) // "[1,2]"
+console.log(String(obj2)) // "[3,4]"
