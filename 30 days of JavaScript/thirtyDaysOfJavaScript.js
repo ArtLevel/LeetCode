@@ -352,14 +352,85 @@
 
 // 2619. Array Prototype Last
 
-/**
- * @return {null|boolean|number|string|Array|Object}
- */
+// /**
+//  * @return {null|boolean|number|string|Array|Object}
+//  */
+//
+// Array.prototype.last = () => {
+// 	if (this.length === 0) return -1
+// 	return this[this.length - 1]
+// }
+//
+// const arr = [1, 2, 3]
+// arr.last() // 3
 
-Array.prototype.last = () => {
-	if (this.length === 0) return -1
-	return this[this.length - 1]
+// 2726. Calculator with Method Chaining
+
+class Calculator {
+	/**
+	 * @param {number} value
+	 */
+	constructor(value) {
+		this.value = value
+	}
+
+	/**
+	 * @param {number} value
+	 * @return {Calculator}
+	 */
+	add(value) {
+		this.value += value
+		return this
+	}
+
+	/**
+	 * @param {number} value
+	 * @return {Calculator}
+	 */
+	subtract(value) {
+		this.value -= value
+		return this
+	}
+
+	/**
+	 * @param {number} value
+	 * @return {Calculator}
+	 */
+	multiply(value) {
+		this.value *= value
+		return this
+	}
+
+	/**
+	 * @param {number} value
+	 * @return {Calculator}
+	 */
+	divide(value) {
+		this.value /= value
+		return this
+	}
+
+	/**
+	 * @param {number} value
+	 * @return {Calculator}
+	 */
+	power(value) {
+		this.value = Math.pow(this.value, value)
+		return this
+	}
+
+	/**
+	 * @return {number}
+	 */
+	getResult() {
+		if (this.value !== Infinity) {
+			return this.value
+		} else {
+			return 'Division by zero is not allowed'
+		}
+	}
 }
 
-const arr = [1, 2, 3]
-arr.last() // 3
+const calculator = new Calculator(20).divide(0).getResult()
+
+console.log(calculator)
